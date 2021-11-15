@@ -54,6 +54,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbConsEstoque = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 153, 102));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setClosable(true);
         setIconifiable(true);
@@ -69,6 +70,8 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
+        btnPesquisar.setBackground(new java.awt.Color(153, 0, 0));
+        btnPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +79,8 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
+        btNovo.setBackground(new java.awt.Color(153, 0, 0));
+        btNovo.setForeground(new java.awt.Color(255, 255, 255));
         btNovo.setText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +88,8 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
+        btnAlterar.setBackground(new java.awt.Color(153, 0, 0));
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +97,8 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
+        btExcluir.setBackground(new java.awt.Color(153, 0, 0));
+        btExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btExcluir.setText("Excluir");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +106,8 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(153, 0, 0));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Cancelar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

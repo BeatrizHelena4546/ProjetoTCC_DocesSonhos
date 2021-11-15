@@ -136,6 +136,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         txtDataNasc = new javax.swing.JTextField();
         txtCPF = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 153, 102));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setClosable(true);
         setForeground(java.awt.Color.white);
@@ -145,6 +146,8 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         setTitle("Cadastrar Funcionario");
         setToolTipText("");
 
+        btSalvar.setBackground(new java.awt.Color(153, 0, 0));
+        btSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +155,8 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btCancelar.setBackground(new java.awt.Color(153, 0, 0));
+        btCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
