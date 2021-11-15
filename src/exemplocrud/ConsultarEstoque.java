@@ -5,8 +5,6 @@
  */
 package exemplocrud;
 
-import acessoDados.moduloConexao;
-import static acessoDados.moduloConexao.connector;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -26,16 +24,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aristoteles
  */
-public class ConsultarCliente extends javax.swing.JInternalFrame {
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+public class ConsultarEstoque extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ConsultarCliente
      */
     private JDesktopPane jdpPrincipal;
-    public ConsultarCliente(JDesktopPane jdp) {
+    public ConsultarEstoque(JDesktopPane jdp) {
         initComponents();
         jdpPrincipal = jdp;
     }
@@ -50,27 +45,27 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        txtPesquisar = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbConsFunc = new javax.swing.JTable();
+        tbConsEstoque = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Consultar Funcionario");
+        setTitle("Consultar Estoque");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Pesquisar:");
 
-        txtPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisarActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
@@ -102,26 +97,26 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setText("Cancelar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
 
-        tbConsFunc.setModel(new javax.swing.table.DefaultTableModel(
+        tbConsEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome", "DataNasc", "CPF"
+                "ID", "Produto", "Data", "Qtd", "Lote"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,7 +127,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbConsFunc);
+        jScrollPane1.setViewportView(tbConsEstoque);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,11 +148,11 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelar))
+                                .addComponent(jButton5))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPesquisar)))
+                                .addComponent(txtNome)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -166,7 +161,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -174,7 +169,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                     .addComponent(btNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAlterar)
                     .addComponent(btExcluir)
-                    .addComponent(btnCancelar))
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -183,13 +178,13 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisarActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
@@ -201,15 +196,15 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projeto_DocesSonhos");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","admin");
             String sql = "select * from Cliente ";
-            if(!txtPesquisar.getText().equals(""))
+            if(!txtNome.getText().equals(""))
                 sql = sql + " where Nome LIKE ? ";
             PreparedStatement stmt = con.prepareStatement(sql);
-            if(!txtPesquisar.getText().equals(""))
-                stmt.setString(1, "%"+txtPesquisar.getText()+"%");
+            if(!txtNome.getText().equals(""))
+                stmt.setString(1, "%"+txtNome.getText()+"%");
             ResultSet rs = stmt.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) tbConsFunc.getModel();
+            DefaultTableModel model = (DefaultTableModel) tbConsEstoque.getModel();
             model.setNumRows(0);
             while(rs.next()){
                 String[] linha = {rs.getString("IDCliente"), rs.getString("Nome"),
@@ -233,12 +228,12 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                     + "test","root","admin");  
             String sql = "delete from Cliente where IDCliente = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            int linha = this.tbConsFunc.getSelectedRow();
-            stmt.setInt(1, Integer.parseInt(tbConsFunc.getValueAt(linha, 0).toString()));
+            int linha = this.tbConsEstoque.getSelectedRow();
+            stmt.setInt(1, Integer.parseInt(tbConsEstoque.getValueAt(linha, 0).toString()));
             stmt.execute();
             stmt.close();
             con.close();
-            DefaultTableModel model = (DefaultTableModel) tbConsFunc.getModel();
+            DefaultTableModel model = (DefaultTableModel) tbConsEstoque.getModel();
             model.removeRow(linha);
             JOptionPane.showMessageDialog(this, "Cliente Excluído com Sucesso!");
             this.setClosable(true);
@@ -251,8 +246,8 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        int linha = this.tbConsFunc.getSelectedRow();
-        int id = Integer.parseInt(tbConsFunc.getValueAt(linha, 0).toString());
+        int linha = this.tbConsEstoque.getSelectedRow();
+        int id = Integer.parseInt(tbConsEstoque.getValueAt(linha, 0).toString());
         CadastrarCliente cadastrarCliente = new CadastrarCliente();
         jdpPrincipal.add(cadastrarCliente);
         cadastrarCliente.setVisible(true);
@@ -264,11 +259,11 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbConsFunc;
-    private javax.swing.JTextField txtPesquisar;
+    private javax.swing.JTable tbConsEstoque;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

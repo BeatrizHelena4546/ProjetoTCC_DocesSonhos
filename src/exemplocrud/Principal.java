@@ -3,6 +3,7 @@ package exemplocrud;
 public class Principal extends javax.swing.JFrame {
 
     public Principal() {
+        int TipoTela;
         initComponents();
     }
 
@@ -14,12 +15,18 @@ public class Principal extends javax.swing.JFrame {
         jdpPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        imCliente = new javax.swing.JMenuItem();
+        mnConsEstoque = new javax.swing.JMenuItem();
+        mnConsFuncionario = new javax.swing.JRadioButtonMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        mnCadEstoque = new javax.swing.JRadioButtonMenuItem();
+        mnCadFuncionario = new javax.swing.JRadioButtonMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jdpPrincipal.setBackground(new java.awt.Color(255, 153, 102));
+        jdpPrincipal.setForeground(new java.awt.Color(255, 204, 102));
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
@@ -32,19 +39,47 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 334, Short.MAX_VALUE)
         );
 
-        jMenu3.setText("Cadastro");
+        jMenu3.setText("Consultar");
 
-        imCliente.setText("Cliente");
-        imCliente.addActionListener(new java.awt.event.ActionListener() {
+        mnConsEstoque.setText("Estoque");
+        mnConsEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imClienteActionPerformed(evt);
+                mnConsEstoqueActionPerformed(evt);
             }
         });
-        jMenu3.add(imCliente);
+        jMenu3.add(mnConsEstoque);
+
+        mnConsFuncionario.setSelected(true);
+        mnConsFuncionario.setText("Funcionario");
+        mnConsFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnConsFuncionarioActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mnConsFuncionario);
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Ajuda");
+        jMenu4.setText("Cadastrar");
+
+        mnCadEstoque.setSelected(true);
+        mnCadEstoque.setText("Estoque");
+        mnCadEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCadEstoqueActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnCadEstoque);
+
+        mnCadFuncionario.setSelected(true);
+        mnCadFuncionario.setText("Funcionario");
+        mnCadFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnCadFuncionarioActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnCadFuncionario);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -63,41 +98,33 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void imClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imClienteActionPerformed
-        // TODO add your handling code here:
+    private void mnConsEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsEstoqueActionPerformed
+
+        ConsultarEstoque consultarEstoque = new ConsultarEstoque(jdpPrincipal);
+        this.jdpPrincipal.add(consultarEstoque);
+        consultarEstoque.setVisible(true);
+    }//GEN-LAST:event_mnConsEstoqueActionPerformed
+
+    private void mnCadEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCadEstoqueActionPerformed
+        CadastrarEstoque cadastrarEstoque = new CadastrarEstoque();
+        this.jdpPrincipal.add(cadastrarEstoque);
+        cadastrarEstoque.setVisible(true);
+        
+    }//GEN-LAST:event_mnCadEstoqueActionPerformed
+
+    private void mnConsFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsFuncionarioActionPerformed
         ConsultarCliente consultaCliente = new ConsultarCliente(jdpPrincipal);
         this.jdpPrincipal.add(consultaCliente);
         consultaCliente.setVisible(true);
-    }//GEN-LAST:event_imClienteActionPerformed
+    }//GEN-LAST:event_mnConsFuncionarioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void mnCadFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCadFuncionarioActionPerformed
+        CadastrarCliente cadastrarCliente = new CadastrarCliente();
+        this.jdpPrincipal.add(cadastrarCliente);
+        cadastrarCliente.setVisible(true);
+    }//GEN-LAST:event_mnCadFuncionarioActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Principal().setVisible(true);
@@ -106,11 +133,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem imCliente;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpPrincipal;
+    private javax.swing.JRadioButtonMenuItem mnCadEstoque;
+    private javax.swing.JRadioButtonMenuItem mnCadFuncionario;
+    private javax.swing.JMenuItem mnConsEstoque;
+    private javax.swing.JRadioButtonMenuItem mnConsFuncionario;
     // End of variables declaration//GEN-END:variables
 }
