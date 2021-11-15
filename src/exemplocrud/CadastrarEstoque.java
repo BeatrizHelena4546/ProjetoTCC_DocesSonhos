@@ -23,7 +23,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
         }
 
     private void localizaFunc(){
-        String sql = "select * from funcionario where id = ?";
+        String sql = "select * from estoque where idEstoque = ?";
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtID.getText());
@@ -32,8 +32,8 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
                 txtID.setText(rs.getString(1));
                 txtProduto.setText(rs.getString(2));
                 txtdtPedido.setText(rs.getString(3));
-                txtdtEntrega.setText(rs.getString(3));
-                txtqtd.setText(rs.getString(4));
+                txtdtEntrega.setText(rs.getString(4));
+                txtqtd.setText(rs.getString(5));
             }
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

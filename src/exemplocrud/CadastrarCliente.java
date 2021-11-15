@@ -36,7 +36,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     }
     
     private void salvar(){
-        String sql = "insert into Cliente (idFuncionario, nome, dtnascimento, CPF) values (?,?,?,?)";
+        String sql = "insert into funcionario (idFuncionario, nome, dtnascimento, CPF) values (?,?,?,?)";
             try{
                 //preparando o comando sql na conexão
                 pst = conexao.prepareStatement(sql);
@@ -50,8 +50,8 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                         (txtCPF.getText().isEmpty()))  {
                     JOptionPane.showMessageDialog(null,"Preencha todos os campos");
             }
-                int incluiAutorOK = pst.executeUpdate();
-                if(incluiAutorOK > 0){
+                int incluiFuncOK = pst.executeUpdate();
+                if(incluiFuncOK > 0){
                    JOptionPane.showMessageDialog(null, "Perfil incluído com Sucesso!!!");
                     txtNomeFunc.setText(null);
                     txtDataNasc.setText(null);
@@ -67,7 +67,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                 YES_NO_OPTION);
         if(excluiOK == JOptionPane.YES_OPTION){
             System.exit(0);
-            String sql = "delete from autor where idtautor = ?";
+            String sql = "delete from funcionario where idFuncionario = ?";
             try{
                 //preparando o comando sql na conexão
                 pst = conexao.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     
     private void alterar(){
       
-            String sql = "update autor set nomeautor = ?, siteautor = ?, dtnascimento = ? where idtbperfil = ?";
+            String sql = "update funcionario set nome = ?, CPF = ?, dtnascimento = ? where idFuncionario = ?";
             try{
                 //preparando o comando sql na conexão
                 pst = conexao.prepareStatement(sql);

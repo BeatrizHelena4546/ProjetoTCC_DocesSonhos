@@ -16,15 +16,15 @@ public class moduloConexao {
             java.sql.Connection conexao = null;
             String driver = "com.mysql.jdbc.Driver";
             String url = "jdbc:mysql://localhost:3306/bddocessonhos";
-            String user = "accurate05_add1";
-            String password = "Cedup2021";
+            String user = "root";
+            String password = "";
         try{
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
             return conexao;
             
         }catch (Exception e){
-            System.out.println(e); 
+            System.out.println("Conexão Falhou: "+e); 
             return null;
         }
     }
