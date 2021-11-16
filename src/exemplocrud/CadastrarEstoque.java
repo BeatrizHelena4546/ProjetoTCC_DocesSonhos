@@ -17,11 +17,6 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
 
-    CadastrarEstoque() {
-        initComponents();
-        conexao = moduloConexao.connector;
-        }
-
     private void localizaFunc(){
         String sql = "select * from estoque where idEstoque = ?";
         try{
@@ -41,14 +36,14 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
     }
     
     private void salvar(){
-        String sql = "insert into estoque (idEstoque, produto, dtPedido, dtEntrega, qtd) values (?,?,?,?,?)";
+        String sql = "insert into estoque ( produto, dtPedido, dtEntrega, qtd) values (?,?,?,?)";
             try{
                 pst = conexao.prepareStatement(sql);
-                pst.setString(1, txtID.getText());
-                pst.setString(2, txtProduto.getText());
-                pst.setString(3, txtdtPedido.getText());
-                pst.setString(4, txtdtEntrega.getText());
-                pst.setString(6, txtqtd.getText());
+                pst.setString(1, null);
+                pst.setString(1, txtProduto.getText());
+                pst.setString(2, txtdtPedido.getText());
+                pst.setString(3, txtdtEntrega.getText());
+                pst.setString(4, txtqtd.getText());
                                 
                 if((txtProduto.getText().isEmpty()) || txtdtPedido.getText().isEmpty())  {
                     JOptionPane.showMessageDialog(null,"Preencha todos os campos");
@@ -121,7 +116,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
             }
         }
     
-    public CadastrarEstoque(int idAlteracao) {
+    public CadastrarEstoque() {
         initComponents();
         conexao = moduloConexao.connector();
     }
