@@ -53,6 +53,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
                    JOptionPane.showMessageDialog(null, "Perfil incluído com Sucesso!!!");
                     txtProduto.setText(null);
                     txtdtEntrega.setText(null);
+                    txtdtPedido.setText(null);
                     txtqtd.setText(null);
                 }
             }catch(Exception e){
