@@ -207,7 +207,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bddocessonhos","root","");
             String sql = "select * from estoque ";
             if(!txtNome.getText().equals(""))
                 sql = sql + " where produto LIKE ? ";
@@ -234,8 +234,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         // TODO add your handling code here:
         try{
-            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/"
-                    + "test","root","admin");  
+            Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ "bddocessonhos","root","");  
             String sql = "delete from Cliente where IDCliente = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             int linha = this.JTConsEstoque.getSelectedRow();

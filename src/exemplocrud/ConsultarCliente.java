@@ -213,7 +213,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projeto_DocesSonhos");
-            String sql = "select * from Cliente ";
+            String sql = "select * from funcionario ";
             if(!txtPesquisar.getText().equals(""))
                 sql = sql + " where Nome LIKE ? ";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -223,9 +223,8 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             DefaultTableModel model = (DefaultTableModel) JTConsFunc.getModel();
             model.setNumRows(0);
             while(rs.next()){
-                String[] linha = {rs.getString("IDCliente"), rs.getString("Nome"),
-                    rs.getString("DDD"),rs.getString("Telefone"),rs.getString("Email"),
-                    rs.getString("CPF"),rs.getString("RG"), rs.getString("DtNascimento") };
+                String[] linha = {rs.getString("idFuncionario"), rs.getString("Nome"),
+                    rs.getString("dtNascimento"),rs.getString("CPF")};
                 model.addRow(linha);
             }
             
@@ -241,17 +240,17 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
             Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/"
-                    + "test","root","admin");  
-            String sql = "delete from Cliente where IDCliente = ?";
+                    + "bddocessonhos","root","");  
+            String sql = "delete from funcionario where idFuncionario = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             int linha = this.JTConsFunc.getSelectedRow();
             stmt.setInt(1, Integer.parseInt(JTConsFunc.getValueAt(linha, 0).toString()));
-            stmt.execute();
+            stmt.execute();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
             stmt.close();
             con.close();
             DefaultTableModel model = (DefaultTableModel) JTConsFunc.getModel();
             model.removeRow(linha);
-            JOptionPane.showMessageDialog(this, "Cliente Excluído com Sucesso!");
+            JOptionPane.showMessageDialog(this, "Funcionario Excluído com Sucesso!");
             this.setClosable(true);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e);
