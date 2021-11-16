@@ -57,7 +57,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         btExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbConsFunc = new javax.swing.JTable();
+        JTConsFunc = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 153, 102));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -120,7 +120,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        tbConsFunc.setModel(new javax.swing.table.DefaultTableModel(
+        JTConsFunc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -143,7 +143,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbConsFunc);
+        jScrollPane1.setViewportView(JTConsFunc);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,7 +220,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             if(!txtPesquisar.getText().equals(""))
                 stmt.setString(1, "%"+txtPesquisar.getText()+"%");
             ResultSet rs = stmt.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) tbConsFunc.getModel();
+            DefaultTableModel model = (DefaultTableModel) JTConsFunc.getModel();
             model.setNumRows(0);
             while(rs.next()){
                 String[] linha = {rs.getString("IDCliente"), rs.getString("Nome"),
@@ -244,12 +244,12 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                     + "test","root","admin");  
             String sql = "delete from Cliente where IDCliente = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            int linha = this.tbConsFunc.getSelectedRow();
-            stmt.setInt(1, Integer.parseInt(tbConsFunc.getValueAt(linha, 0).toString()));
+            int linha = this.JTConsFunc.getSelectedRow();
+            stmt.setInt(1, Integer.parseInt(JTConsFunc.getValueAt(linha, 0).toString()));
             stmt.execute();
             stmt.close();
             con.close();
-            DefaultTableModel model = (DefaultTableModel) tbConsFunc.getModel();
+            DefaultTableModel model = (DefaultTableModel) JTConsFunc.getModel();
             model.removeRow(linha);
             JOptionPane.showMessageDialog(this, "Cliente Excluído com Sucesso!");
             this.setClosable(true);
@@ -261,9 +261,8 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     
     
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
-        int linha = this.tbConsFunc.getSelectedRow();
-        int id = Integer.parseInt(tbConsFunc.getValueAt(linha, 0).toString());
+        int linha = this.JTConsFunc.getSelectedRow();
+        int id = Integer.parseInt(JTConsFunc.getValueAt(linha, 0).toString());
         CadastrarCliente cadastrarCliente = new CadastrarCliente();
         jdpPrincipal.add(cadastrarCliente);
         cadastrarCliente.setVisible(true);
@@ -272,6 +271,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTConsFunc;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btnAlterar;
@@ -279,7 +279,6 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbConsFunc;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
 }

@@ -172,6 +172,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
 
         jLabel8.setText("CPF:");
 
+        txtID.setEditable(false);
         txtID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

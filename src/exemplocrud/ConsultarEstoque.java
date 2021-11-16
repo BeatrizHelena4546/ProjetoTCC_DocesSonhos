@@ -52,7 +52,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
         btExcluir = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbConsEstoque = new javax.swing.JTable();
+        JTConsEstoque = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 153, 102));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -115,19 +115,19 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             }
         });
 
-        tbConsEstoque.setModel(new javax.swing.table.DefaultTableModel(
+        JTConsEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Produto", "Data", "Qtd", "Lote"
+                "ID", "Produto", "DataPedido", "Qtd"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Long.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -138,7 +138,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbConsEstoque);
+        jScrollPane1.setViewportView(JTConsEstoque);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,20 +207,19 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","admin");
-            String sql = "select * from Cliente ";
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","");
+            String sql = "select * from estoque ";
             if(!txtNome.getText().equals(""))
-                sql = sql + " where Nome LIKE ? ";
+                sql = sql + " where produto LIKE ? ";
             PreparedStatement stmt = con.prepareStatement(sql);
             if(!txtNome.getText().equals(""))
                 stmt.setString(1, "%"+txtNome.getText()+"%");
             ResultSet rs = stmt.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) tbConsEstoque.getModel();
+            DefaultTableModel model = (DefaultTableModel) JTConsEstoque.getModel();
             model.setNumRows(0);
             while(rs.next()){
-                String[] linha = {rs.getString("IDCliente"), rs.getString("Nome"),
-                    rs.getString("DDD"),rs.getString("Telefone"),rs.getString("Email"),
-                    rs.getString("CPF"),rs.getString("RG"), rs.getString("DtNascimento") };
+                String[] linha = {rs.getString("idEstoque"), rs.getString("Produto"),
+                    rs.getString("dtPedido"),rs.getString("qtd") };
                 model.addRow(linha);
             }
             
@@ -239,12 +238,12 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
                     + "test","root","admin");  
             String sql = "delete from Cliente where IDCliente = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            int linha = this.tbConsEstoque.getSelectedRow();
-            stmt.setInt(1, Integer.parseInt(tbConsEstoque.getValueAt(linha, 0).toString()));
+            int linha = this.JTConsEstoque.getSelectedRow();
+            stmt.setInt(1, Integer.parseInt(JTConsEstoque.getValueAt(linha, 0).toString()));
             stmt.execute();
             stmt.close();
             con.close();
-            DefaultTableModel model = (DefaultTableModel) tbConsEstoque.getModel();
+            DefaultTableModel model = (DefaultTableModel) JTConsEstoque.getModel();
             model.removeRow(linha);
             JOptionPane.showMessageDialog(this, "Cliente Excluído com Sucesso!");
             this.setClosable(true);
@@ -257,8 +256,8 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
     
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        int linha = this.tbConsEstoque.getSelectedRow();
-        int id = Integer.parseInt(tbConsEstoque.getValueAt(linha, 0).toString());
+        int linha = this.JTConsEstoque.getSelectedRow();
+        int id = Integer.parseInt(JTConsEstoque.getValueAt(linha, 0).toString());
         CadastrarCliente cadastrarCliente = new CadastrarCliente();
         jdpPrincipal.add(cadastrarCliente);
         cadastrarCliente.setVisible(true);
@@ -267,6 +266,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTConsEstoque;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btnAlterar;
@@ -274,7 +274,6 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbConsEstoque;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
