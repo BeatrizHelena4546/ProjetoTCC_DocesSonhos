@@ -235,7 +235,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
             Connection con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/"+ "bddocessonhos","root","");  
-            String sql = "delete from Cliente where IDCliente = ?";
+            String sql = "delete from estoque where idEstoque = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             int linha = this.JTConsEstoque.getSelectedRow();
             stmt.setInt(1, Integer.parseInt(JTConsEstoque.getValueAt(linha, 0).toString()));
@@ -244,7 +244,7 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
             con.close();
             DefaultTableModel model = (DefaultTableModel) JTConsEstoque.getModel();
             model.removeRow(linha);
-            JOptionPane.showMessageDialog(this, "Cliente Excluído com Sucesso!");
+            JOptionPane.showMessageDialog(this, "Estoque Excluído com Sucesso!");
             this.setClosable(true);
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e);

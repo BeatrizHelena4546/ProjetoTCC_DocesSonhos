@@ -19,7 +19,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     ResultSet rs = null;
 
     private void localizaFunc(){
-        String sql = "select * from funcionario where id = ?";
+        String sql = "select * from funcionario where idFuncionario = ?";
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtID.getText());

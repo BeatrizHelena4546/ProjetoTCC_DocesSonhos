@@ -41,7 +41,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
     }
     
     private void salvar(){
-        String sql = "insert into Funcionario (id, produto, dtPedido, dtEntrega, qtd) values (?,?,?,?,?)";
+        String sql = "insert into estoque (idEstoque, produto, dtPedido, dtEntrega, qtd) values (?,?,?,?,?)";
             try{
                 pst = conexao.prepareStatement(sql);
                 pst.setString(1, txtID.getText());
@@ -70,7 +70,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
                 YES_NO_OPTION);
         if(excluiOK == JOptionPane.YES_OPTION){
             System.exit(0);
-            String sql = "delete from funcionario where idtautor = ?";
+            String sql = "delete from estoque where idEstoque = ?";
             try{
                 //preparando o comando sql na conexão
                 pst = conexao.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
     
     private void alterar(){
       
-            String sql = "update funcionario set produto = ?, dtEntrega = ?, dtPedido = ? where funcionario = ?";
+            String sql = "update estoque set produto = ?, dtEntrega = ?, dtPedido = ? where estoque = ?";
             try{
                 //preparando o comando sql na conexão
                 pst = conexao.prepareStatement(sql);
