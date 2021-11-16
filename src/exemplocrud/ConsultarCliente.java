@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exemplocrud;
 
 import acessoDados.moduloConexao;
@@ -21,19 +16,11 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-/**
- *
- * @author Aristoteles
- */
 public class ConsultarCliente extends javax.swing.JInternalFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
-    /**
-     * Creates new form ConsultarCliente
-     */
     private JDesktopPane jdpPrincipal;
     public ConsultarCliente(JDesktopPane jdp) {
         initComponents();
@@ -212,7 +199,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/projeto_DocesSonhos");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bddocessonhos","root","");
             String sql = "select * from funcionario ";
             if(!txtPesquisar.getText().equals(""))
                 sql = sql + " where Nome LIKE ? ";

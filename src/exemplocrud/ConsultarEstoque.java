@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package exemplocrud;
 
 import java.sql.Connection;
@@ -19,16 +14,8 @@ import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-/**
- *
- * @author Aristoteles
- */
 public class ConsultarEstoque extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ConsultarCliente
-     */
     private JDesktopPane jdpPrincipal;
     public ConsultarEstoque(JDesktopPane jdp) {
         initComponents();
