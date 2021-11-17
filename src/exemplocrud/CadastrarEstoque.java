@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
+import exemplocrud.ConsultarEstoque;
 
 public class CadastrarEstoque extends javax.swing.JInternalFrame {
     Connection conexao = null;
@@ -46,18 +47,19 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
                 pst.setString(4, txtqtd.getText());
                                 
                 if((txtProduto.getText().isEmpty()) || txtdtPedido.getText().isEmpty())  {
-                    JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-            }
-                int incluiAutorOK = pst.executeUpdate();
-                if(incluiAutorOK > 0){
-                   JOptionPane.showMessageDialog(null, "Perfil incluído com Sucesso!!!");
-                    txtProduto.setText(null);
-                    txtdtEntrega.setText(null);
-                    txtdtPedido.setText(null);
-                    txtqtd.setText(null);
+                    JOptionPane.showMessageDialog(null,"Preencha todos os campos");                   
+                }else{
+                   int incluiAutorOK = pst.executeUpdate();
+                   if(incluiAutorOK > 0){
+                      JOptionPane.showMessageDialog(null, "Perfil incluído com Sucesso!");
+                      txtProduto.setText(null);
+                      txtdtEntrega.setText(null);
+                      txtdtPedido.setText(null);
+                      txtqtd.setText(null);
+                     }
                 }
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar Estoque, Tente novamente");
             }
     }
     
@@ -82,7 +84,7 @@ public class CadastrarEstoque extends javax.swing.JInternalFrame {
                     txtqtd.setText(null);
                 }
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, "Erro ao apagar Estoque, Tente novamente!");
             }
         }
     }

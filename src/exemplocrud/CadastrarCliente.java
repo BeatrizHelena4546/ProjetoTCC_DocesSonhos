@@ -49,21 +49,22 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                 if((txtNomeFunc.getText().isEmpty()) || (txtDataNasc.getText().isEmpty()) || 
                         (txtCPF.getText().isEmpty()))  {
                     JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-            }
-                int incluiFuncOK = pst.executeUpdate();
-                if(incluiFuncOK > 0){
-                   JOptionPane.showMessageDialog(null, "Perfil incluído com Sucesso!!!");
-                    txtNomeFunc.setText(null);
-                    txtDataNasc.setText(null);
-                    txtCPF.setText(null);
+                }else{
+                   int incluiFuncOK = pst.executeUpdate();
+                   if(incluiFuncOK > 0){
+                      JOptionPane.showMessageDialog(null, "Perfil incluído com Sucesso!!!");
+                      txtNomeFunc.setText(null);
+                      txtDataNasc.setText(null);
+                      txtCPF.setText(null);
+                    }
                 }
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, "Erro ao executar o cadastro, Tente novemente!");
             }
     }
     
     private void excluir(){
-        int excluiOK = JOptionPane.showConfirmDialog(null, "Você deseja realmente excluir? ","Atenção!!!",
+        int excluiOK = JOptionPane.showConfirmDialog(null, "Você deseja realmente excluir? ","Atenção!",
                 YES_NO_OPTION);
         if(excluiOK == JOptionPane.YES_OPTION){
             System.exit(0);
@@ -75,7 +76,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                 //executar a atualização/comando no banco
                 int excluidoFuncOK = pst.executeUpdate();
                 if(excluidoFuncOK > 0){
-                   JOptionPane.showMessageDialog(null, "Excluído Com Sucesso!!!");
+                   JOptionPane.showMessageDialog(null, "Excluído Com Sucesso!");
                     txtNomeFunc.setText(null);
                     txtDataNasc.setText(null);
                     txtCPF.setText(null);
@@ -100,14 +101,15 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                 if((txtNomeFunc.getText().isEmpty()) || (txtDataNasc.getText().isEmpty()) || 
                         txtCPF.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Preencha todos os campos");
-            }
+                }else{
                 int alteradoFuncOK = pst.executeUpdate();
                 if(alteradoFuncOK > 0){
-                   JOptionPane.showMessageDialog(null, "Perfil alterado Com Sucesso!!!");
+                   JOptionPane.showMessageDialog(null, "Perfil alterado Com Sucesso!");
                     txtID.setText(null);
                     txtNomeFunc.setText(null);
                     txtDataNasc.setText(null);
                     txtCPF.setText(null);
+                    }
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, e);

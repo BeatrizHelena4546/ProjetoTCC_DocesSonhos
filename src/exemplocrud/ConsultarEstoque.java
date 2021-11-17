@@ -1,5 +1,6 @@
 package exemplocrud;
 
+import acessoDados.moduloConexao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -15,13 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultarEstoque extends javax.swing.JInternalFrame {
-
+    
     private JDesktopPane jdpPrincipal;
     public ConsultarEstoque(JDesktopPane jdp) {
         initComponents();
         jdpPrincipal = jdp;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,9 +186,9 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-        CadastrarCliente cadastrarCliente= new CadastrarCliente();
-        jdpPrincipal.add(cadastrarCliente);
-        cadastrarCliente.setVisible(true);
+        CadastrarEstoque cadastrarEstoque = new CadastrarEstoque();
+        jdpPrincipal.add(cadastrarEstoque);
+        cadastrarEstoque.setVisible(true);
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -244,9 +244,10 @@ public class ConsultarEstoque extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int linha = this.JTConsEstoque.getSelectedRow();
         int id = Integer.parseInt(JTConsEstoque.getValueAt(linha, 0).toString());
-        CadastrarCliente cadastrarCliente = new CadastrarCliente();
-        jdpPrincipal.add(cadastrarCliente);
-        cadastrarCliente.setVisible(true);
+        CadastrarEstoque cadastrarEstoque = new CadastrarEstoque();
+        jdpPrincipal.add(cadastrarEstoque);
+        cadastrarEstoque.setVisible(true);
+        
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     
